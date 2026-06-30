@@ -34,14 +34,15 @@
     line-height:1;transform:rotate(-90deg);transform-origin:right top;white-space:nowrap;opacity:.9}
 
   .spacer{flex:1}
-  .goal{display:flex;align-items:center;gap:14px;margin-bottom:30px}
-  .g{padding:13px 22px;border-radius:14px;font-size:23px;font-weight:800;border:1px solid var(--card-line)}
+  .goal{display:flex;align-items:stretch;gap:14px;margin-bottom:30px}
+  .g{padding:13px 22px;border-radius:14px;font-size:23px;font-weight:800;border:1px solid var(--card-line);
+     display:flex;flex-direction:column;justify-content:flex-start}
   .g .s{display:block;font-size:14px;letter-spacing:.1em;font-weight:700;opacity:.85;margin-bottom:3px}
   .g.done{color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));border-color:transparent}
   .g.now{color:#fff;border-color:rgba(56,189,248,.55)}
   .g.goal{color:#f5d77a;border:1px dashed rgba(245,215,122,.6);background:rgba(245,215,122,.06)}
   .g.goal .s{color:#f5d77a}
-  .arr{color:var(--accent);font-size:30px;font-weight:800}
+  .arr{color:var(--accent);font-size:30px;font-weight:800;align-self:center}
 
   .foot{display:flex;justify-content:space-between;align-items:center;
     border-top:1px solid var(--card-line);padding-top:26px}
