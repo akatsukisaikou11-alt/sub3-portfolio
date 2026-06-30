@@ -6,20 +6,15 @@
 <title>サブ3株式会社 ｜ AI Agent活用による業務変革プロトタイプ実践</title>
 <style>
   :root{
-    /* marathon_coach design-policy tokens (dark + neon lime) */
-    --bg:#050505;
-    --accent:#b8ff2c;          /* ネオンライム：主役/ポジティブ */
-    --accent-2:#2f80ff;        /* 青：情報/補助 */
-    --on-accent:#0a1400;       /* ライム上の濃色テキスト */
-    --warn:#ff9f0a;            /* オレンジ：注意/予定/未来目標 */
-    --danger:#ff3b30;          /* 赤：警告 */
-    --ink:rgba(234,245,237,.92);
-    --muted:rgba(234,245,237,.55);
-    --card:#151515;
-    --card-2:#242424;
-    --card-line:rgba(255,255,255,.08);
-    --grad-accent:linear-gradient(120deg,#b8ff2c,#7fd900);
-    --font: -apple-system,'Helvetica Neue','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif;
+    --navy:#0f2740;
+    --navy-2:#163a5f;
+    --accent:#2dd4bf;
+    --accent-2:#38bdf8;
+    --ink:#e8eef5;
+    --muted:#9fb3c8;
+    --card:rgba(255,255,255,.05);
+    --card-line:rgba(255,255,255,.10);
+    --font: "Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
@@ -27,9 +22,9 @@
     font-family:var(--font);
     color:var(--ink);
     background:
-      radial-gradient(1100px 560px at 85% -10%, rgba(184,255,44,.10), transparent 60%),
-      radial-gradient(900px 500px at -5% 110%, rgba(184,255,44,.07), transparent 55%),
-      linear-gradient(160deg,#070907,#050505 55%,#070907);
+      radial-gradient(1200px 600px at 85% -10%, rgba(56,189,248,.18), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, rgba(45,212,191,.16), transparent 55%),
+      linear-gradient(160deg,#0b1f33,#0f2740 55%,#0b1f33);
     min-height:100vh;
     display:flex;
     align-items:center;
@@ -52,8 +47,7 @@
     text-transform:uppercase;font-weight:700;
   }
   .brand{
-    font-size:40px;font-weight:800;line-height:1.1;letter-spacing:.01em;color:#fff;
-    text-shadow:0 0 18px rgba(184,255,44,.18);
+    font-size:40px;font-weight:800;line-height:1.1;letter-spacing:.01em;
   }
   .brand small{display:block;font-size:15px;font-weight:600;color:var(--accent-2);margin-top:8px;letter-spacing:.04em}
   .lede{color:var(--muted);font-size:14.5px;line-height:1.85}
@@ -74,9 +68,9 @@
     border:1px solid var(--card-line);
     border-radius:20px;
     padding:22px 24px 24px;
+    backdrop-filter:blur(6px);
     display:flex;flex-direction:column;
     min-height:430px;
-    box-shadow:0 0 60px rgba(184,255,44,.05);
   }
   .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
   .tab{
@@ -88,15 +82,15 @@
   }
   .tab:hover{color:var(--ink);border-color:rgba(255,255,255,.22)}
   .tab[aria-selected="true"]{
-    color:var(--on-accent);background:var(--grad-accent);
-    border-color:transparent;box-shadow:0 0 22px rgba(184,255,44,.35);
+    color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    border-color:transparent;box-shadow:0 6px 18px rgba(45,212,191,.25);
   }
 
   .view{display:none;animation:fade .35s ease}
   .view.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 
-  .view h2{font-size:19px;font-weight:800;margin-bottom:4px;color:#fff}
+  .view h2{font-size:19px;font-weight:800;margin-bottom:4px}
   .view .sub{color:var(--muted);font-size:13px;margin-bottom:16px;line-height:1.6}
 
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -115,9 +109,8 @@
 
   /* role flow */
   .po{
-    text-align:center;background:linear-gradient(120deg,rgba(184,255,44,.14),rgba(184,255,44,.05));
-    border:1px solid rgba(184,255,44,.4);border-radius:14px;padding:12px;margin-bottom:12px;
-    box-shadow:0 0 24px rgba(184,255,44,.12);
+    text-align:center;background:linear-gradient(120deg,rgba(45,212,191,.16),rgba(56,189,248,.14));
+    border:1px solid rgba(45,212,191,.35);border-radius:14px;padding:12px;margin-bottom:12px;
   }
   .po .t{color:var(--accent)}
   .agents{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:10px}
@@ -126,7 +119,7 @@
   .agent .who{font-size:11px;font-weight:600;color:var(--accent);margin-top:2px}
   .agent .d{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;padding-top:6px;border-top:1px solid var(--card-line)}
   .agent.planned{border-style:dashed;opacity:.9}
-  .agent .plan{display:inline-block;font-size:9px;font-weight:800;color:var(--warn);border:1px solid rgba(255,159,10,.5);border-radius:999px;padding:1px 7px;margin-top:6px;letter-spacing:.04em}
+  .agent .plan{display:inline-block;font-size:9px;font-weight:800;color:#f5d77a;border:1px solid rgba(245,215,122,.5);border-radius:999px;padding:1px 7px;margin-top:6px;letter-spacing:.04em}
   .foot-note{margin-top:14px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--card-line);padding-top:12px;line-height:1.6}
   .foot-note b{color:var(--accent)}
 
@@ -141,11 +134,11 @@
   .goalbar{display:flex;align-items:center;gap:6px;margin-bottom:14px}
   .g-step{flex:1 1 0;text-align:center;border-radius:12px;padding:11px 8px;font-size:12px;font-weight:700;border:1px solid var(--card-line);background:rgba(255,255,255,.04);color:var(--muted);line-height:1.3}
   .g-step span{display:block;font-size:10px;letter-spacing:.08em;margin-bottom:3px;opacity:.9}
-  .g-step.done{color:var(--on-accent);background:var(--grad-accent);border-color:transparent}
-  .g-step.now{color:var(--ink);border-color:rgba(184,255,44,.55)}
-  .g-step.goal{color:var(--warn);border:1px dashed rgba(255,159,10,.55);background:rgba(255,159,10,.07)}
-  .g-step.goal span{color:var(--warn)}
-  .g-line{flex:0 0 16px;height:2px;background:var(--accent);border-radius:2px}
+  .g-step.done{color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));border-color:transparent}
+  .g-step.now{color:var(--ink);border-color:rgba(56,189,248,.5)}
+  .g-step.goal{color:#f5d77a;border:1px dashed rgba(245,215,122,.55);background:rgba(245,215,122,.06)}
+  .g-step.goal span{color:#f5d77a}
+  .g-line{flex:0 0 16px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px}
 
   /* architecture pipeline */
   .pipe{display:flex;align-items:stretch;gap:6px;margin-bottom:12px;flex-wrap:wrap}
@@ -157,7 +150,7 @@
   .support .box .t{color:var(--accent-2)}
   .flow-title{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);margin:2px 0 9px;line-height:1.4}
   .flow-title.second{margin-top:15px}
-  .flow-title .tag{flex:0 0 auto;font-size:11.5px;font-weight:800;color:var(--on-accent);background:var(--grad-accent);padding:4px 11px;border-radius:999px}
+  .flow-title .tag{flex:0 0 auto;font-size:11.5px;font-weight:800;color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));padding:4px 11px;border-radius:999px}
   .flow-title .tag.dev{background:linear-gradient(120deg,#f5d77a,#f0b86e)}
 
   .why{display:flex;flex-direction:column;gap:10px}
@@ -167,14 +160,14 @@
   .punch{
     margin-top:13px;padding:13px 16px;font-size:12.5px;line-height:1.7;color:var(--ink);
     border-left:3px solid var(--accent);border-radius:0 12px 12px 0;
-    background:linear-gradient(120deg,rgba(184,255,44,.12),rgba(184,255,44,.04));
+    background:linear-gradient(120deg,rgba(45,212,191,.10),rgba(56,189,248,.06));
   }
   .punch b{color:var(--accent)}
 
   /* do list */
   .dolist{display:flex;flex-direction:column;gap:11px}
   .do-block{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:14px;padding:13px 15px}
-  .do-block .num{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;color:var(--on-accent);background:var(--grad-accent)}
+  .do-block .num{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2))}
   .do-block .do-t{font-size:13.5px;font-weight:700;color:var(--accent-2);margin-bottom:5px}
   .do-block p{font-size:12.5px;color:var(--muted);line-height:1.7}
   .do-block p b{color:var(--ink)}
