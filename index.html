@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サブ3株式会社 ｜ AI Agent活用による業務変革プロトタイプ実践</title>
+<style>
+  :root{
+    --navy:#0f2740;
+    --navy-2:#163a5f;
+    --accent:#2dd4bf;
+    --accent-2:#38bdf8;
+    --ink:#e8eef5;
+    --muted:#9fb3c8;
+    --card:rgba(255,255,255,.05);
+    --card-line:rgba(255,255,255,.10);
+    --font: "Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font);
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 85% -10%, rgba(56,189,248,.18), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, rgba(45,212,191,.16), transparent 55%),
+      linear-gradient(160deg,#0b1f33,#0f2740 55%,#0b1f33);
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .shell{
+    width:min(1180px,100%);
+    display:grid;
+    grid-template-columns:0.92fr 1.4fr;
+    gap:28px;
+    align-items:stretch;
+  }
+
+  /* ---- left / hero ---- */
+  .hero{display:flex;flex-direction:column;gap:18px;padding:8px 4px}
+  .eyebrow{
+    font-size:12px;letter-spacing:.22em;color:var(--accent);
+    text-transform:uppercase;font-weight:700;
+  }
+  .brand{
+    font-size:40px;font-weight:800;line-height:1.1;letter-spacing:.01em;
+  }
+  .brand small{display:block;font-size:15px;font-weight:600;color:var(--accent-2);margin-top:8px;letter-spacing:.04em}
+  .lede{color:var(--muted);font-size:14.5px;line-height:1.85}
+  .lede b{color:var(--ink);font-weight:700}
+  .meta{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    font-size:11.5px;color:var(--muted);
+    border:1px solid var(--card-line);border-radius:999px;
+    padding:6px 12px;background:var(--card);
+  }
+  .chip b{color:var(--accent)}
+  .person{font-size:12.5px;color:var(--muted);margin-top:6px}
+  .person b{color:var(--ink)}
+
+  /* ---- right / panel ---- */
+  .panel{
+    background:var(--card);
+    border:1px solid var(--card-line);
+    border-radius:20px;
+    padding:22px 24px 24px;
+    backdrop-filter:blur(6px);
+    display:flex;flex-direction:column;
+    min-height:430px;
+  }
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .tab{
+    flex:1 1 auto;
+    font-family:inherit;font-size:13px;font-weight:700;color:var(--muted);
+    background:transparent;border:1px solid var(--card-line);
+    border-radius:12px;padding:10px 8px;cursor:pointer;
+    transition:.18s;white-space:nowrap;
+  }
+  .tab:hover{color:var(--ink);border-color:rgba(255,255,255,.22)}
+  .tab[aria-selected="true"]{
+    color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));
+    border-color:transparent;box-shadow:0 6px 18px rgba(45,212,191,.25);
+  }
+
+  .view{display:none;animation:fade .35s ease}
+  .view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .view h2{font-size:19px;font-weight:800;margin-bottom:4px}
+  .view .sub{color:var(--muted);font-size:13px;margin-bottom:16px;line-height:1.6}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .box{
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--card-line);
+    border-radius:14px;padding:14px 15px;
+  }
+  .box .t{font-size:12.5px;font-weight:700;color:var(--muted);margin-bottom:6px;line-height:1.45}
+  .box .t .s{color:var(--accent);font-weight:800}
+  .box .t .n{
+    font-size:11px;width:20px;height:20px;border-radius:6px;
+    display:grid;place-items:center;background:rgba(56,189,248,.16);color:var(--accent-2)
+  }
+  .box p{font-size:12.5px;color:var(--muted);line-height:1.65}
+
+  /* role flow */
+  .po{
+    text-align:center;background:linear-gradient(120deg,rgba(45,212,191,.16),rgba(56,189,248,.14));
+    border:1px solid rgba(45,212,191,.35);border-radius:14px;padding:12px;margin-bottom:12px;
+  }
+  .po .t{color:var(--accent)}
+  .agents{display:grid;grid-template-columns:repeat(auto-fit,minmax(108px,1fr));gap:10px}
+  .agent{background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:12px;padding:11px 9px;text-align:center}
+  .agent .r{font-size:13.5px;font-weight:800;color:var(--ink);letter-spacing:.01em}
+  .agent .who{font-size:11px;font-weight:600;color:var(--accent);margin-top:2px}
+  .agent .d{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.5;padding-top:6px;border-top:1px solid var(--card-line)}
+  .agent.planned{border-style:dashed;opacity:.9}
+  .agent .plan{display:inline-block;font-size:9px;font-weight:800;color:#f5d77a;border:1px solid rgba(245,215,122,.5);border-radius:999px;padding:1px 7px;margin-top:6px;letter-spacing:.04em}
+  .foot-note{margin-top:14px;font-size:11.5px;color:var(--muted);border-top:1px dashed var(--card-line);padding-top:12px;line-height:1.6}
+  .foot-note b{color:var(--accent)}
+
+  /* outcome before->after */
+  .flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:8px}
+  .stage{background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:12px;padding:12px}
+  .stage .lab{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-2);font-weight:700;margin-bottom:6px}
+  .stage p{font-size:12px;color:var(--muted);line-height:1.6}
+  .arrow{display:grid;place-items:center;color:var(--accent);font-size:18px}
+
+  /* goal progress */
+  .goalbar{display:flex;align-items:center;gap:6px;margin-bottom:14px}
+  .g-step{flex:1 1 0;text-align:center;border-radius:12px;padding:11px 8px;font-size:12px;font-weight:700;border:1px solid var(--card-line);background:rgba(255,255,255,.04);color:var(--muted);line-height:1.3}
+  .g-step span{display:block;font-size:10px;letter-spacing:.08em;margin-bottom:3px;opacity:.9}
+  .g-step.done{color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));border-color:transparent}
+  .g-step.now{color:var(--ink);border-color:rgba(56,189,248,.5)}
+  .g-step.goal{color:#f5d77a;border:1px dashed rgba(245,215,122,.55);background:rgba(245,215,122,.06)}
+  .g-step.goal span{color:#f5d77a}
+  .g-line{flex:0 0 16px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px}
+
+  /* architecture pipeline */
+  .pipe{display:flex;align-items:stretch;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+  .node{flex:1 1 0;min-width:96px;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:12px;padding:11px 9px;text-align:center}
+  .node .h{font-size:12px;font-weight:700;color:var(--accent-2)}
+  .node .v{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.45}
+  .node .a{color:var(--accent);font-weight:800;align-self:center;padding:0 2px}
+  .support{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .support .box .t{color:var(--accent-2)}
+  .flow-title{display:flex;align-items:center;gap:10px;font-size:11.5px;color:var(--muted);margin:2px 0 9px;line-height:1.4}
+  .flow-title.second{margin-top:15px}
+  .flow-title .tag{flex:0 0 auto;font-size:11.5px;font-weight:800;color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2));padding:4px 11px;border-radius:999px}
+  .flow-title .tag.dev{background:linear-gradient(120deg,#f5d77a,#f0b86e)}
+
+  .why{display:flex;flex-direction:column;gap:10px}
+  .why .row{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:12px;padding:13px 15px}
+  .why .row .k{flex:0 0 96px;font-size:12.5px;font-weight:700;color:var(--accent-2)}
+  .why .row p{font-size:12.5px;color:var(--muted);line-height:1.65}
+  .punch{
+    margin-top:13px;padding:13px 16px;font-size:12.5px;line-height:1.7;color:var(--ink);
+    border-left:3px solid var(--accent);border-radius:0 12px 12px 0;
+    background:linear-gradient(120deg,rgba(45,212,191,.10),rgba(56,189,248,.06));
+  }
+  .punch b{color:var(--accent)}
+
+  /* do list */
+  .dolist{display:flex;flex-direction:column;gap:11px}
+  .do-block{display:flex;gap:13px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:14px;padding:13px 15px}
+  .do-block .num{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2))}
+  .do-block .do-t{font-size:13.5px;font-weight:700;color:var(--accent-2);margin-bottom:5px}
+  .do-block p{font-size:12.5px;color:var(--muted);line-height:1.7}
+  .do-block p b{color:var(--ink)}
+
+  @media (max-width:900px){
+    .shell{grid-template-columns:1fr;gap:20px}
+    .brand{font-size:32px}
+    .panel{min-height:0}
+    .agents{grid-template-columns:repeat(2,1fr)}
+    .flow{grid-template-columns:1fr;}.arrow{transform:rotate(90deg)}
+    .support{grid-template-columns:1fr}
+    .goalbar{flex-direction:column;align-items:stretch}
+    .g-line{width:2px;height:14px;flex:0 0 14px;align-self:center}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- LEFT -->
+  <header class="hero">
+    <div class="eyebrow">AI Agent 導入支援の小型実証</div>
+    <div class="brand">サブ3株式会社<small>AI Agent活用による業務変革プロトタイプ実践</small></div>
+    <p class="lede">
+      個人開発を、<b>企業のAI Agent導入支援に近い「型」</b>で運用するプロジェクト。
+      フルマラソン・サブ3（3時間切り）を目指すトレーニング管理アプリを題材に、
+      <b>課題定義・Agent設計・データ設計・実装・運用改善</b>を一気通貫で実証しています。
+    </p>
+    <p class="lede" style="font-size:13px">
+      テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。
+      AIに丸投げせず、人間の判断を残した統制可能な運用を設計しています。
+    </p>
+    <div class="meta">
+      <span class="chip"><b>Stack</b>&nbsp; GAS / Supabase / Garmin / Gemini</span>
+      <span class="chip"><b>Model</b>&nbsp; Multi-Agent + Human-in-the-loop</span>
+      <span class="chip">業務外実践・機密情報不使用</span>
+    </div>
+    <p class="person"><b>Hisashi Azuma</b>（あづまYA）／ AI Agent・DX/BPR・PMO 領域</p>
+  </header>
+
+  <!-- RIGHT -->
+  <main class="panel">
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true"  data-v="why">なぜやるか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="do">実行していること</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="how">推進体制</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="result">結果・効果</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="tech">技術・ギミック</button>
+    </div>
+
+    <!-- WHY -->
+    <section class="view active" id="why">
+      <h2>なぜやるか</h2>
+      <p class="sub">2026年3月、板橋Cityマラソンで<b style="color:var(--ink)">サブ4（4時間切り）を達成</b>。だが、ここから<b style="color:var(--ink)">サブ3（3時間切り）までの道のりは遠い</b>。残された時間は約1年——勢いや根性だけでは、とても届かない。</p>
+      <div class="why">
+        <div class="row"><div class="k">本気の目標</div><p><b style="color:var(--ink)">2027年3月・板橋Cityマラソンでサブ3</b>。夢ではなく、期日を切って達成すると決めた目標。だから道具にも妥協したくなかった。</p></div>
+        <div class="row"><div class="k">課題</div><p><b style="color:var(--ink)">専門知識がない。専属コーチを雇うお金もない。</b>無理なトレーニングは故障を招き、効率よく鍛えなければ残り1年では到底間に合わない。だから<b style="color:var(--ink)">科学的手法で、最短距離のトレーニングを回したかった</b>——その手段がAIだった。</p></div>
+      </div>
+      <p class="punch">自分の状態まで見て判断を変えてくれるコーチは、世の中にいない。なら、<b>自分専用のAIコーチを作るしかない</b>——そう決めたのだ。それが、いま毎日使っているこのアプリだ。</p>
+    </section>
+
+    <!-- DO -->
+    <section class="view" id="do">
+      <h2>実行していること</h2>
+      <p class="sub">AIを"手段"として、毎日の意思決定を回している。<b style="color:var(--ink)">作る → 課題を解く → 目標へ</b>、の一本道。</p>
+      <div class="dolist">
+        <div class="do-block">
+          <div class="num">1</div>
+          <div class="do-body">
+            <div class="do-t">何を作り、何を行っているか</div>
+            <p>その日の状態に応じて計画を変える<b>意思決定アプリ</b>を自作。毎日 <b>Garmin（心拍・睡眠・負荷）＋食事＋主観コンディション</b>を記録し、AIがその日にやるべき<b>練習・食事・回復</b>を提案。週次で計画、月次で分析を回している。</p>
+          </div>
+        </div>
+        <div class="do-block">
+          <div class="num">2</div>
+          <div class="do-body">
+            <div class="do-t">それが、どう課題を解決するか</div>
+            <p>足りない専門知識をAIが補い、雇えない専属コーチの代わりに<b>24時間いつでも相談できる自分専用コーチ</b>になる。<b>故障リスクを監視して"無理"を止め</b>、限られた時間で最短距離のトレーニングを実現する。</p>
+          </div>
+        </div>
+        <div class="do-block">
+          <div class="num">3</div>
+          <div class="do-body">
+            <div class="do-t">それが、どう目標へ導くか</div>
+            <div class="pipe" style="margin:6px 0 8px">
+              <div class="node"><div class="h">年間方針</div><div class="v">1年を複数フェーズに区切り、各方針を定める</div></div>
+              <div class="a">→</div>
+              <div class="node"><div class="h">週次計画</div><div class="v">方針に沿って週単位の計画を組む</div></div>
+              <div class="a">→</div>
+              <div class="node"><div class="h">当日調整</div><div class="v">体調・波に応じAIが当日メニューを調整</div></div>
+            </div>
+            <p>この三層で、ぶれずにサブ3へ近づいていく。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW -->
+    <section class="view" id="how">
+      <h2>推進体制 ｜ 誰が担うか</h2>
+      <p class="sub">人間をProduct Ownerに置き、<b style="color:var(--ink)">種類の違う複数のAIを役割で分担</b>。適材適所で使い分け、最終判断は人間に残して統制可能にしている。</p>
+      <div class="po">
+        <div class="t" style="font-size:13px;font-weight:700;display:block">Human / Product Owner&nbsp;&nbsp;｜&nbsp;&nbsp;あづまYA（本人）</div>
+        <p style="font-size:12px;color:var(--muted);margin-top:4px">目的・KPI・優先順位・最終判断</p>
+      </div>
+      <div class="agents">
+        <div class="agent"><div class="r">PMO</div><div class="who">Claude</div><div class="d">タスク分解／進捗・論点管理</div></div>
+        <div class="agent"><div class="r">Engineer</div><div class="who">Codex</div><div class="d">実装案／コード修正</div></div>
+        <div class="agent"><div class="r">Analyst</div><div class="who">Gemini</div><div class="d">指標設計／異常値確認</div></div>
+        <div class="agent"><div class="r">Reviewer</div><div class="who">Claude</div><div class="d">品質・説明可能性／セキュリティ</div></div>
+        <div class="agent planned"><div class="r">Data / OCR</div><div class="who">ローカルLLM</div><div class="d">画像・記録の読取／データ取込</div><div class="plan">導入予定</div></div>
+      </div>
+      <p class="foot-note"><b>責任分界</b>：各AIは実装補助・分析・論点整理・検証観点に活用。目的設定・要件確定・品質確認・最終判断は人間が担う。</p>
+    </section>
+
+    <!-- RESULT -->
+    <section class="view" id="result">
+      <h2>結果・効果</h2>
+      <p class="sub">測るのは「アプリを作ったこと」ではなく、<b style="color:var(--ink)">課題が解け、目標に近づいているか</b>。</p>
+      <div class="goalbar">
+        <div class="g-step done"><span>2026 / 03</span>サブ4 達成</div>
+        <div class="g-line"></div>
+        <div class="g-step now"><span>NOW</span>科学的トレーニングを継続運用</div>
+        <div class="g-line"></div>
+        <div class="g-step goal"><span>2027 / 03</span>サブ3</div>
+      </div>
+      <div class="grid">
+        <div class="box"><div class="t">専門性がない <span class="s">→ AIが科学的知見を代替</span></div><p><b>科学的根拠に基づく日々の判断</b>（練習・食事・回復）を、自己流に頼らず下せるようになった。</p></div>
+        <div class="box"><div class="t">コーチを雇えない <span class="s">→ AIが専属コーチを代替</span></div><p><b>専属コーチ相当の助言を24時間・コスト0</b>で得られる体制になった。</p></div>
+        <div class="box"><div class="t">1年で効率化必須 <span class="s">→ 状態適応で最短化</span></div><p>状態に合わせ<b>「やり過ぎ／不足」を抑え</b>、故障リスクに配慮して最短距離で積み上げる。</p></div>
+        <div class="box"><div class="t">改善が続かない <span class="s">→ 運用ログで改善ループ</span></div><p>運用ログから改善を抽出（例：食事記録を<b>朝昼晩＋サプリで文脈分離</b>し助言精度を改善）。</p></div>
+      </div>
+    </section>
+
+    <!-- TECH -->
+    <section class="view" id="tech">
+      <h2>技術・ギミック</h2>
+      <p class="sub">2つのフローを分離。<b style="color:var(--ink)">毎日の運用</b>（アプリを使う側）と、<b style="color:var(--ink)">開発・改善</b>（アプリを作る側）。</p>
+
+      <div class="flow-title"><span class="tag">① 毎日の運用フロー</span>日々の練習・食事を入力 → AIが判定 → 提案 → 実行 → 記録</div>
+      <div class="pipe">
+        <div class="node"><div class="h">入力</div><div class="v">日々の練習・食事・睡眠</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">取り込み</div><div class="v">手入力で受付（OCRは導入予定）</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">AI判定</div><div class="v">Gemini＋内製評価で状態を評価</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">提案→実行</div><div class="v">練習・食事の提案を承認し実行</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">記録</div><div class="v">Supabaseに評価＋データを登録</div></div>
+      </div>
+
+      <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アプリ自体を安全に作り・直し続けるための運用基盤</div>
+      <div class="support">
+        <div class="box"><div class="t">Obsidian</div><p>正本・Context Pack。判断理由を残し再開を容易に</p></div>
+        <div class="box"><div class="t">GitHub / clasp</div><p>コード同期・デプロイ。正本管理と本番反映を分離</p></div>
+        <div class="box"><div class="t">承認ゲート</div><p>本番反映前に人間がレビューし品質事故を予防</p></div>
+      </div>
+    </section>
+  </main>
+
+</div>
+
+<script>
+  const tabs = document.querySelectorAll('.tab');
+  const views = document.querySelectorAll('.view');
+  tabs.forEach(t=>t.addEventListener('click',()=>{
+    tabs.forEach(x=>x.setAttribute('aria-selected', x===t));
+    views.forEach(v=>v.classList.toggle('active', v.id===t.dataset.v));
+  }));
+</script>
+</body>
+</html>
