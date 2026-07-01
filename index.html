@@ -32,10 +32,11 @@
     --font: "Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%}
+  html{height:100%}
   body{
     font-family:var(--font);
     color:var(--ink);
+    overflow-x:hidden;
     background:
       radial-gradient(1200px 600px at 85% -10%, rgba(56,189,248,.18), transparent 60%),
       radial-gradient(900px 500px at -5% 110%, rgba(45,212,191,.16), transparent 55%),
@@ -53,7 +54,9 @@
     grid-template-columns:0.92fr 1.4fr;
     gap:28px;
     align-items:stretch;
+    min-width:0;
   }
+  .hero,.panel{min-width:0}
 
   /* ---- left / hero ---- */
   .hero{display:flex;flex-direction:column;gap:18px;padding:8px 4px}
@@ -206,6 +209,19 @@
     .support{grid-template-columns:1fr}
     .goalbar{flex-direction:column;align-items:stretch}
     .g-line{width:2px;height:14px;flex:0 0 14px;align-self:center}
+  }
+  @media (max-width:600px){
+    body{padding:14px}
+    .shell{gap:16px}
+    .brand{font-size:26px;line-height:1.15}
+    .brand small{font-size:12.5px;margin-top:6px}
+    .lede{font-size:13.5px;line-height:1.8}
+    .view h2{font-size:19px}
+    .tab{font-size:12px;padding:9px 7px}
+    .why .row{flex-direction:column;align-items:flex-start;gap:8px;padding:16px}
+    .why .row .k{flex:0 0 auto;width:auto;justify-content:flex-start;text-align:left;font-size:15px}
+    .why .row p{font-size:14px}
+    .agents{grid-template-columns:1fr 1fr}
   }
 </style>
 </head>
