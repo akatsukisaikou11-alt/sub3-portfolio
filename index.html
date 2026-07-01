@@ -157,6 +157,10 @@
   .node .h{font-size:13px;font-weight:700;color:var(--accent-2)}
   .node .v{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.5}
   .node .a{color:var(--accent);font-weight:800;align-self:center;padding:0 2px}
+  .ln{flex:0 0 20px;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:2px;align-self:center}
+  .loopback{margin-top:10px;display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--accent);border:1px dashed rgba(45,212,191,.45);border-radius:12px;background:linear-gradient(270deg,rgba(45,212,191,.10),transparent);padding:10px 14px;line-height:1.5}
+  .loopback .ic{font-size:18px;font-weight:800;flex:0 0 auto}
+  .loopback b{color:var(--accent)}
   .support{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
   .support .box .t{color:var(--accent-2)}
   .flow-title{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted);margin:2px 0 10px;line-height:1.45}
@@ -216,7 +220,7 @@
     </p>
     <p class="lede">
       複数のデータを統合し、判断基準を決め、続けられるUIと運用ルールに落とす——<b>この構造は企業の業務変革と同じ</b>。
-      それを、役割分担した<b>複数のAIエージェント＋人間</b>のチームで回しています。
+      それを、<b>役割ごとに最適なAIをアサインし、人間と組んだチーム</b>で回しています。
     </p>
     <p class="lede" style="font-size:13px">
       テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。
@@ -277,9 +281,9 @@
             <div class="do-t">それがどう目標へ導くか</div>
             <div class="pipe" style="margin:6px 0 8px">
               <div class="node"><div class="h">年間方針</div><div class="v">1年を複数フェーズに区切り、各方針を定める</div></div>
-              <div class="a">→</div>
+              <div class="ln"></div>
               <div class="node"><div class="h">週次計画</div><div class="v">方針に沿って週単位の計画を組む</div></div>
-              <div class="a">→</div>
+              <div class="ln"></div>
               <div class="node"><div class="h">当日調整</div><div class="v">体調・波に応じAIが当日メニューを調整</div></div>
             </div>
           </div>
@@ -290,7 +294,7 @@
     <!-- HOW -->
     <section class="view" id="how">
       <h2>誰と組むか ｜ 推進体制</h2>
-      <p class="sub">人間をProduct Ownerに置き、<b style="color:var(--ink)">種類の違う複数のAIを役割で分担</b>。適材適所で使い分け、最終判断は人間に残して統制可能にしている。</p>
+      <p class="sub">人間をProduct Ownerに置き、<b style="color:var(--ink)">役割ごとに最適なAIをアサイン</b>。仕事に合わせて使い分け、最終判断は人間に残して統制可能にしている。</p>
       <div class="po">
         <div class="t" style="font-size:13px;font-weight:700;display:block">Human / Product Owner&nbsp;&nbsp;｜&nbsp;&nbsp;本人</div>
         <p style="font-size:12px;color:var(--muted);margin-top:4px">目的・KPI・優先順位・最終判断</p>
@@ -332,30 +336,31 @@
       <div class="flow-title"><span class="tag">① 毎日の運用フロー</span>日々の練習・食事を入力 → AIが判定 → 提案 → 実行 → 記録</div>
       <div class="pipe">
         <div class="node"><div class="h">入力</div><div class="v">日々の練習・食事・睡眠</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">取り込み</div><div class="v">手入力で受付（OCRは導入予定）</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">AI判定</div><div class="v">Gemini＋内製評価で状態を評価</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">提案→実行</div><div class="v">練習・食事の提案を承認し実行</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">記録</div><div class="v">Supabaseに評価＋データを登録</div></div>
       </div>
 
       <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アイディアから本番反映まで、AIと人間で回す開発サイクル</div>
       <div class="pipe">
         <div class="node"><div class="h">アイディア</div><div class="v">発案（本人）</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">カンバン起票</div><div class="v">Claudeがタスク化・分解</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">実装</div><div class="v">Codexがコーディング</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">レビュー判定</div><div class="v">Claudeが人間介入の要否を判定</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">レビュー</div><div class="v">Claude（必要なら人間が介入）</div></div>
-        <div class="a">→</div>
+        <div class="ln"></div>
         <div class="node"><div class="h">デプロイ</div><div class="v">承認後に本番反映</div></div>
       </div>
+      <div class="loopback"><span class="ic">⟲</span><span><b>改善ループ</b> ── デプロイ後は運用ログから学びを抽出し、次のアイディアへ戻して回し続ける</span></div>
       <p class="foot-note">基盤：<b>Obsidian</b>（正本・Context Pack）／ <b>GitHub・clasp</b>（コード同期）／ <b>承認ゲート</b>（本番前の人間レビュー）</p>
     </section>
   </main>
