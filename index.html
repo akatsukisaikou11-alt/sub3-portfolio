@@ -187,6 +187,7 @@
   /* do list */
   .dolist{display:flex;flex-direction:column;gap:12px;flex:1 1 auto;justify-content:space-between}
   .do-block{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:14px;padding:16px 18px}
+  .do-body{flex:1 1 auto;min-width:0}
   .do-block .num{flex:0 0 32px;height:32px;border-radius:10px;display:grid;place-items:center;font-size:15px;font-weight:800;color:#06222b;background:linear-gradient(120deg,var(--accent),var(--accent-2))}
   .do-block .do-t{font-size:14.5px;font-weight:700;color:var(--accent-2);margin-bottom:5px}
   .do-block p{font-size:13.5px;color:var(--muted);line-height:1.75}
@@ -223,6 +224,14 @@
     <p class="lede">
       複数のデータを統合し、判断基準を決め、続けられるUIと運用ルールに落とす——<b>この構造は企業の業務変革と同じ</b>。
       それを、<b>役割ごとに最適なAIをアサインし、人間と組んだチーム</b>で回しています。
+    </p>
+    <p class="lede">
+      実際、半年で<b>サブ4（4時間切り）を達成</b>。いまはサブ3へ向けて運用を続けており、
+      データが増えるほど判断は鋭くなり、改善のたびにアプリも走力も伸びていきます。
+    </p>
+    <p class="lede">
+      この「<b>課題を定義し、AIを実装や分析に使い、人間が最終判断して運用に定着させる</b>」型は、
+      そのまま企業のAI導入支援・DX・PMOへ移せます。<b>作れることより、現場で回し続けられること</b>に価値があると考えています。
     </p>
     <p class="lede" style="font-size:13px">
       テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。
@@ -281,24 +290,25 @@
           <div class="num">3</div>
           <div class="do-body">
             <div class="do-t">それがどう目標へ導くか</div>
-            <svg class="cycle" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="年間方針から週次計画と当日調整のループ" style="margin:6px 0 4px">
+            <svg class="cycle" viewBox="0 0 680 172" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="年間方針から週次計画と当日調整のループ" style="width:calc(100% + 46px);margin:8px 0 2px -46px">
               <defs><linearGradient id="trk3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
-              <rect x="6" y="45" width="120" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>
-              <line x1="128" y1="75" x2="166" y2="75" stroke="#2dd4bf" stroke-width="2"/>
-              <polygon points="164,71 164,79 172,75" fill="#2dd4bf"/>
-              <rect x="174" y="45" width="150" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2"/>
-              <rect x="406" y="45" width="150" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2"/>
-              <line x1="326" y1="63" x2="400" y2="63" stroke="#2dd4bf" stroke-width="2"/>
-              <polygon points="398,59 398,67 406,63" fill="#2dd4bf"/>
-              <line x1="404" y1="87" x2="330" y2="87" stroke="#2dd4bf" stroke-width="2"/>
-              <polygon points="332,83 332,91 324,87" fill="#2dd4bf"/>
+              <rect x="12" y="44" width="150" height="88" rx="16" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>
+              <line x1="162" y1="88" x2="202" y2="88" stroke="#2dd4bf" stroke-width="2.5"/>
+              <polygon points="200,83 200,93 210,88" fill="#2dd4bf"/>
+              <rect x="214" y="44" width="196" height="88" rx="16" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2.5"/>
+              <rect x="472" y="44" width="196" height="88" rx="16" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2.5"/>
+              <line x1="414" y1="72" x2="468" y2="72" stroke="#2dd4bf" stroke-width="2.5"/>
+              <polygon points="466,67 466,77 476,72" fill="#2dd4bf"/>
+              <line x1="470" y1="104" x2="416" y2="104" stroke="#2dd4bf" stroke-width="2.5"/>
+              <polygon points="418,99 418,109 408,104" fill="#2dd4bf"/>
+              <text x="441" y="36" fill="#2dd4bf" font-size="12" font-weight="800" text-anchor="middle" font-family="'Segoe UI',sans-serif">⟲ 毎週</text>
               <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
-                <text x="66" y="72" fill="#38bdf8" font-size="14" font-weight="700">年間方針</text>
-                <text x="66" y="90" fill="#9fb3c8" font-size="10">各フェーズの方針</text>
-                <text x="249" y="72" fill="#38bdf8" font-size="14" font-weight="700">週次計画</text>
-                <text x="249" y="90" fill="#9fb3c8" font-size="10">週単位の計画</text>
-                <text x="481" y="72" fill="#38bdf8" font-size="14" font-weight="700">当日調整</text>
-                <text x="481" y="90" fill="#9fb3c8" font-size="10">体調でAI調整</text>
+                <text x="87" y="84" fill="#38bdf8" font-size="16" font-weight="700">年間方針</text>
+                <text x="87" y="104" fill="#9fb3c8" font-size="11">各フェーズの方針</text>
+                <text x="312" y="84" fill="#38bdf8" font-size="16" font-weight="700">週次計画</text>
+                <text x="312" y="104" fill="#9fb3c8" font-size="11">週単位の計画</text>
+                <text x="570" y="84" fill="#38bdf8" font-size="16" font-weight="700">当日調整</text>
+                <text x="570" y="104" fill="#9fb3c8" font-size="11">体調でAI調整</text>
               </g>
             </svg>
           </div>
