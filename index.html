@@ -105,6 +105,8 @@
   .view .sub{color:var(--muted);font-size:13.5px;margin-bottom:18px;line-height:1.65}
 
   .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .vlist{display:flex;flex-direction:column;gap:12px;flex:1 1 auto;justify-content:space-between}
+  .cycle{width:100%;height:auto;display:block;margin:4px 0 2px}
   .box{
     background:rgba(255,255,255,.04);
     border:1px solid var(--card-line);
@@ -241,7 +243,7 @@
       <button class="tab" role="tab" aria-selected="false" data-v="do">何を作るか</button>
       <button class="tab" role="tab" aria-selected="false" data-v="result">何を提供するか</button>
       <button class="tab" role="tab" aria-selected="false" data-v="how">誰と組むか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="tech">どう実現したか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="tech">どう運用するか</button>
     </div>
 
     <!-- WHY -->
@@ -320,7 +322,7 @@
         <div class="g-line"></div>
         <div class="g-step goal"><span>2027 / 03</span>サブ3</div>
       </div>
-      <div class="grid">
+      <div class="vlist">
         <div class="box"><div class="t">専門性がない <span class="s">→ AIが科学的知見を代替</span></div><p><b>科学的根拠に基づく日々の判断</b>（練習・食事・回復）を、自己流に頼らず下せるようになった。</p></div>
         <div class="box"><div class="t">コーチを雇えない <span class="s">→ AIが専属コーチを代替</span></div><p><b>専属コーチ相当の助言を24時間・コスト0</b>で得られる体制になった。</p></div>
         <div class="box"><div class="t">1年で効率化必須 <span class="s">→ 状態適応で最短化</span></div><p>状態に合わせ<b>「やり過ぎ／不足」を抑え</b>、故障リスクに配慮して最短距離で積み上げる。</p></div>
@@ -330,7 +332,7 @@
 
     <!-- TECH -->
     <section class="view" id="tech">
-      <h2>どう実現したか</h2>
+      <h2>どう運用するか</h2>
       <p class="sub">2つのフローを分離。<b style="color:var(--ink)">毎日の運用</b>（アプリを使う側）と、<b style="color:var(--ink)">開発・改善</b>（アプリを作る側）。</p>
 
       <div class="flow-title"><span class="tag">① 毎日の運用フロー</span>日々の練習・食事を入力 → AIが判定 → 提案 → 実行 → 記録</div>
@@ -347,20 +349,38 @@
       </div>
 
       <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アイディアから本番反映まで、AIと人間で回す開発サイクル</div>
-      <div class="pipe">
-        <div class="node"><div class="h">アイディア</div><div class="v">発案（本人）</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">カンバン起票</div><div class="v">Claudeがタスク化・分解</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">実装</div><div class="v">Codexがコーディング</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">レビュー判定</div><div class="v">Claudeが人間介入の要否を判定</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">レビュー</div><div class="v">Claude（必要なら人間が介入）</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">デプロイ</div><div class="v">承認後に本番反映</div></div>
-      </div>
-      <div class="loopback"><span class="ic">⟲</span><span><b>改善ループ</b> ── デプロイ後は運用ログから学びを抽出し、次のアイディアへ戻して回し続ける</span></div>
+      <svg class="cycle" viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="開発・改善の閉じたループ">
+        <defs><linearGradient id="trk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+        <rect x="70" y="72" width="500" height="110" rx="55" fill="none" stroke="url(#trk)" stroke-width="2.5" stroke-dasharray="7 6"/>
+        <g fill="#2dd4bf">
+          <polygon points="241,67 241,77 251,72"/>
+          <polygon points="391,67 391,77 401,72"/>
+          <polygon points="564,123 574,123 569,133"/>
+          <polygon points="399,177 399,187 389,182"/>
+          <polygon points="249,177 249,187 239,182"/>
+          <polygon points="66,131 76,131 71,121"/>
+        </g>
+        <g fill="#2dd4bf" stroke="#0b1f33" stroke-width="2">
+          <circle cx="170" cy="72" r="7"/><circle cx="320" cy="72" r="7"/><circle cx="470" cy="72" r="7"/>
+          <circle cx="470" cy="182" r="7"/><circle cx="320" cy="182" r="7"/><circle cx="170" cy="182" r="7"/>
+        </g>
+        <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
+          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">アイディア</text>
+          <text x="170" y="63" fill="#9fb3c8" font-size="11">発案（本人）</text>
+          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">カンバン起票</text>
+          <text x="320" y="63" fill="#9fb3c8" font-size="11">Claude</text>
+          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">実装</text>
+          <text x="470" y="63" fill="#9fb3c8" font-size="11">Codex</text>
+          <text x="470" y="206" fill="#38bdf8" font-size="15" font-weight="700">レビュー判定</text>
+          <text x="470" y="221" fill="#9fb3c8" font-size="11">Claude</text>
+          <text x="320" y="206" fill="#38bdf8" font-size="15" font-weight="700">レビュー</text>
+          <text x="320" y="221" fill="#9fb3c8" font-size="11">Claude・人間</text>
+          <text x="170" y="206" fill="#38bdf8" font-size="15" font-weight="700">デプロイ</text>
+          <text x="170" y="221" fill="#9fb3c8" font-size="11">承認後に反映</text>
+          <text x="320" y="121" fill="#2dd4bf" font-size="15" font-weight="800">⟲ 改善ループ</text>
+          <text x="320" y="140" fill="#9fb3c8" font-size="11">デプロイ → 次のアイディアへ回し続ける</text>
+        </g>
+      </svg>
       <p class="foot-note">基盤：<b>Obsidian</b>（正本・Context Pack）／ <b>GitHub・clasp</b>（コード同期）／ <b>承認ゲート</b>（本番前の人間レビュー）</p>
     </section>
   </main>
