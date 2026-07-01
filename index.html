@@ -215,8 +215,8 @@
       AIに丸投げせず、人間の判断を残した統制可能な運用を設計しています。
     </p>
     <div class="meta">
-      <span class="chip"><b>Stack</b>&nbsp; GAS / Supabase / Garmin / Gemini</span>
-      <span class="chip"><b>Model</b>&nbsp; Multi-Agent + Human-in-the-loop</span>
+      <span class="chip"><b>技術構成</b>&nbsp; GAS / Supabase / Garmin / Gemini</span>
+      <span class="chip"><b>運用モデル</b>&nbsp; 複数AIエージェント＋人間の承認</span>
       <span class="chip">業務外実践・機密情報不使用</span>
     </div>
     <p class="person"><b>Hisashi Azuma</b>　／　AI Agent・DX/BPR・PMO 領域</p>
@@ -226,10 +226,10 @@
   <main class="panel">
     <div class="tabs" role="tablist">
       <button class="tab" role="tab" aria-selected="true"  data-v="why">なぜやるか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="do">実行していること</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="how">推進体制</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="result">結果・効果</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="tech">技術・ギミック</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="do">何を作ったか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="tech">どう実現したか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="how">誰と組むか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="result">何を提供するか</button>
     </div>
 
     <!-- WHY -->
@@ -245,7 +245,7 @@
 
     <!-- DO -->
     <section class="view" id="do">
-      <h2>実行していること</h2>
+      <h2>何を作ったか</h2>
       <p class="sub">AIを"手段"として、毎日の意思決定を回している。<b style="color:var(--ink)">作る → 課題を解く → 目標へ</b>、の一本道。</p>
       <div class="dolist">
         <div class="do-block">
@@ -280,7 +280,7 @@
 
     <!-- HOW -->
     <section class="view" id="how">
-      <h2>推進体制 ｜ 誰が担うか</h2>
+      <h2>誰と組むか ｜ 推進体制</h2>
       <p class="sub">人間をProduct Ownerに置き、<b style="color:var(--ink)">種類の違う複数のAIを役割で分担</b>。適材適所で使い分け、最終判断は人間に残して統制可能にしている。</p>
       <div class="po">
         <div class="t" style="font-size:13px;font-weight:700;display:block">Human / Product Owner&nbsp;&nbsp;｜&nbsp;&nbsp;本人</div>
@@ -298,7 +298,7 @@
 
     <!-- RESULT -->
     <section class="view" id="result">
-      <h2>結果・効果</h2>
+      <h2>何を提供するか</h2>
       <p class="sub">測るのは「アプリを作ったこと」ではなく、<b style="color:var(--ink)">課題が解け、目標に近づいているか</b>。</p>
       <div class="goalbar">
         <div class="g-step done"><span>2026 / 03</span>サブ4 達成</div>
@@ -317,7 +317,7 @@
 
     <!-- TECH -->
     <section class="view" id="tech">
-      <h2>技術・ギミック</h2>
+      <h2>どう実現したか</h2>
       <p class="sub">2つのフローを分離。<b style="color:var(--ink)">毎日の運用</b>（アプリを使う側）と、<b style="color:var(--ink)">開発・改善</b>（アプリを作る側）。</p>
 
       <div class="flow-title"><span class="tag">① 毎日の運用フロー</span>日々の練習・食事を入力 → AIが判定 → 提案 → 実行 → 記録</div>
@@ -333,12 +333,21 @@
         <div class="node"><div class="h">記録</div><div class="v">Supabaseに評価＋データを登録</div></div>
       </div>
 
-      <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アプリ自体を安全に作り・直し続けるための運用基盤</div>
-      <div class="support">
-        <div class="box"><div class="t">Obsidian</div><p>正本・Context Pack。判断理由を残し再開を容易に</p></div>
-        <div class="box"><div class="t">GitHub / clasp</div><p>コード同期・デプロイ。正本管理と本番反映を分離</p></div>
-        <div class="box"><div class="t">承認ゲート</div><p>本番反映前に人間がレビューし品質事故を予防</p></div>
+      <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アイディアから本番反映まで、AIと人間で回す開発サイクル</div>
+      <div class="pipe">
+        <div class="node"><div class="h">アイディア</div><div class="v">発案（本人）</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">カンバン起票</div><div class="v">Claudeがタスク化・分解</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">実装</div><div class="v">Codexがコーディング</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">レビュー判定</div><div class="v">Claudeが人間介入の要否を判定</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">レビュー</div><div class="v">Claude（必要なら人間が介入）</div></div>
+        <div class="a">→</div>
+        <div class="node"><div class="h">デプロイ</div><div class="v">承認後に本番反映</div></div>
       </div>
+      <p class="foot-note">基盤：<b>Obsidian</b>（正本・Context Pack）／ <b>GitHub・clasp</b>（コード同期）／ <b>承認ゲート</b>（本番前の人間レビュー）</p>
     </section>
   </main>
 
