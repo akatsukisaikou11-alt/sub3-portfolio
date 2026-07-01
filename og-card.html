@@ -21,13 +21,16 @@
     position:relative;
   }
   .frame{position:absolute;inset:26px;border:1px solid var(--card-line);border-radius:24px}
-  .wrap{position:absolute;inset:0;padding:74px 80px;display:flex;flex-direction:column}
+  .wrap{
+    position:absolute;inset:0;padding:72px 80px;
+    display:flex;flex-direction:column;align-items:center;text-align:center;
+  }
 
-  .eyebrow{font-size:21px;letter-spacing:.28em;color:var(--accent);font-weight:800;text-transform:uppercase}
-  .title{font-size:104px;font-weight:800;line-height:1.0;margin-top:18px;letter-spacing:.01em}
-  .sub{font-size:33px;color:var(--muted);margin-top:22px;line-height:1.45;font-weight:500}
+  .eyebrow{font-size:18px;letter-spacing:.24em;color:var(--accent);font-weight:800;text-transform:uppercase}
+  .title{font-size:82px;font-weight:800;line-height:1.0;margin-top:26px;letter-spacing:.01em;white-space:nowrap}
+  .sub{max-width:520px;font-size:28px;color:var(--muted);margin-top:26px;line-height:1.45;font-weight:500}
   .sub b{color:#fff;font-weight:800}
-  .sub2{font-size:25px;color:var(--muted);margin-top:12px;font-weight:600}
+  .sub2{max-width:520px;font-size:23px;color:var(--muted);margin-top:12px;line-height:1.55;font-weight:600}
   .sub2 b{color:#fff;font-weight:800}
 
   /* big watermark */
@@ -46,9 +49,9 @@
   .g.goal .s{color:#f5d77a}
   .arr{color:var(--accent);font-size:30px;font-weight:800;align-self:center}
 
-  .foot{display:flex;justify-content:flex-start;align-items:center;
+  .foot{width:min(620px,100%);display:flex;justify-content:center;align-items:center;
     border-top:1px solid var(--card-line);padding-top:26px}
-  .who{font-size:25px;color:var(--ink);font-weight:700}
+  .who{font-size:23px;color:var(--ink);font-weight:700}
   .who b{color:var(--accent)}
 </style>
 </head>
