@@ -229,7 +229,7 @@
       AIに丸投げせず、人間の判断を残した統制可能な運用を設計しています。
     </p>
     <div class="meta">
-      <span class="chip"><b>技術構成</b>&nbsp; GAS / Supabase / Garmin / Gemini</span>
+      <span class="chip"><b>技術構成</b>&nbsp; GAS / Supabase / Garmin / Gemini / Obsidian / GitHub・clasp</span>
       <span class="chip"><b>運用モデル</b>&nbsp; 複数AIエージェント＋人間の承認</span>
       <span class="chip">業務外実践・機密情報不使用</span>
     </div>
@@ -281,13 +281,26 @@
           <div class="num">3</div>
           <div class="do-body">
             <div class="do-t">それがどう目標へ導くか</div>
-            <div class="pipe" style="margin:6px 0 8px">
-              <div class="node"><div class="h">年間方針</div><div class="v">1年を複数フェーズに区切り、各方針を定める</div></div>
-              <div class="ln"></div>
-              <div class="node"><div class="h">週次計画</div><div class="v">方針に沿って週単位の計画を組む</div></div>
-              <div class="ln"></div>
-              <div class="node"><div class="h">当日調整</div><div class="v">体調・波に応じAIが当日メニューを調整</div></div>
-            </div>
+            <svg class="cycle" viewBox="0 0 600 150" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="年間方針から週次計画と当日調整のループ" style="margin:6px 0 4px">
+              <defs><linearGradient id="trk3" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+              <rect x="6" y="45" width="120" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.14)"/>
+              <line x1="128" y1="75" x2="166" y2="75" stroke="#2dd4bf" stroke-width="2"/>
+              <polygon points="164,71 164,79 172,75" fill="#2dd4bf"/>
+              <rect x="174" y="45" width="150" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2"/>
+              <rect x="406" y="45" width="150" height="60" rx="12" fill="rgba(255,255,255,0.04)" stroke="url(#trk3)" stroke-width="2"/>
+              <line x1="326" y1="63" x2="400" y2="63" stroke="#2dd4bf" stroke-width="2"/>
+              <polygon points="398,59 398,67 406,63" fill="#2dd4bf"/>
+              <line x1="404" y1="87" x2="330" y2="87" stroke="#2dd4bf" stroke-width="2"/>
+              <polygon points="332,83 332,91 324,87" fill="#2dd4bf"/>
+              <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
+                <text x="66" y="72" fill="#38bdf8" font-size="14" font-weight="700">年間方針</text>
+                <text x="66" y="90" fill="#9fb3c8" font-size="10">各フェーズの方針</text>
+                <text x="249" y="72" fill="#38bdf8" font-size="14" font-weight="700">週次計画</text>
+                <text x="249" y="90" fill="#9fb3c8" font-size="10">週単位の計画</text>
+                <text x="481" y="72" fill="#38bdf8" font-size="14" font-weight="700">当日調整</text>
+                <text x="481" y="90" fill="#9fb3c8" font-size="10">体調でAI調整</text>
+              </g>
+            </svg>
           </div>
         </div>
       </div>
@@ -336,17 +349,35 @@
       <p class="sub">2つのフローを分離。<b style="color:var(--ink)">毎日の運用</b>（アプリを使う側）と、<b style="color:var(--ink)">開発・改善</b>（アプリを作る側）。</p>
 
       <div class="flow-title"><span class="tag">① 毎日の運用フロー</span>日々の練習・食事を入力 → AIが判定 → 提案 → 実行 → 記録</div>
-      <div class="pipe">
-        <div class="node"><div class="h">入力</div><div class="v">日々の練習・食事・睡眠</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">取り込み</div><div class="v">手入力で受付（OCRは導入予定）</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">AI判定</div><div class="v">Gemini＋内製評価で状態を評価</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">提案→実行</div><div class="v">練習・食事の提案を承認し実行</div></div>
-        <div class="ln"></div>
-        <div class="node"><div class="h">記録</div><div class="v">Supabaseに評価＋データを登録</div></div>
-      </div>
+      <svg class="cycle" viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="毎日の運用ループ">
+        <defs><linearGradient id="trk1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2dd4bf"/><stop offset="1" stop-color="#38bdf8"/></linearGradient></defs>
+        <rect x="70" y="72" width="500" height="110" rx="55" fill="none" stroke="url(#trk1)" stroke-width="2.5" stroke-dasharray="7 6"/>
+        <g fill="#2dd4bf">
+          <polygon points="241,67 241,77 251,72"/>
+          <polygon points="391,67 391,77 401,72"/>
+          <polygon points="564,123 574,123 569,133"/>
+          <polygon points="325,177 325,187 315,182"/>
+          <polygon points="66,131 76,131 71,121"/>
+        </g>
+        <g fill="#2dd4bf" stroke="#0b1f33" stroke-width="2">
+          <circle cx="170" cy="72" r="7"/><circle cx="320" cy="72" r="7"/><circle cx="470" cy="72" r="7"/>
+          <circle cx="430" cy="182" r="7"/><circle cx="210" cy="182" r="7"/>
+        </g>
+        <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
+          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">入力</text>
+          <text x="170" y="63" fill="#9fb3c8" font-size="11">練習・食事・睡眠</text>
+          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">取り込み</text>
+          <text x="320" y="63" fill="#9fb3c8" font-size="11">手入力（OCR予定）</text>
+          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">AI判定</text>
+          <text x="470" y="63" fill="#9fb3c8" font-size="11">Gemini＋評価</text>
+          <text x="430" y="206" fill="#38bdf8" font-size="15" font-weight="700">提案→実行</text>
+          <text x="430" y="221" fill="#9fb3c8" font-size="11">承認し実行</text>
+          <text x="210" y="206" fill="#38bdf8" font-size="15" font-weight="700">記録</text>
+          <text x="210" y="221" fill="#9fb3c8" font-size="11">Supabaseに登録</text>
+          <text x="320" y="121" fill="#2dd4bf" font-size="15" font-weight="800">⟲ 毎日くり返す</text>
+          <text x="320" y="140" fill="#9fb3c8" font-size="11">記録 → 翌日の入力へ</text>
+        </g>
+      </svg>
 
       <div class="flow-title second"><span class="tag">② 開発・改善の仕組み（裏側）</span>アイディアから本番反映まで、AIと人間で回す開発サイクル</div>
       <svg class="cycle" viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="開発・改善の閉じたループ">
@@ -368,7 +399,7 @@
           <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">アイディア</text>
           <text x="170" y="63" fill="#9fb3c8" font-size="11">発案（本人）</text>
           <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">カンバン起票</text>
-          <text x="320" y="63" fill="#9fb3c8" font-size="11">Claude</text>
+          <text x="320" y="63" fill="#9fb3c8" font-size="11">Claude / Obsidian</text>
           <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">実装</text>
           <text x="470" y="63" fill="#9fb3c8" font-size="11">Codex</text>
           <text x="470" y="206" fill="#38bdf8" font-size="15" font-weight="700">レビュー判定</text>
@@ -381,7 +412,6 @@
           <text x="320" y="140" fill="#9fb3c8" font-size="11">デプロイ → 次のアイディアへ回し続ける</text>
         </g>
       </svg>
-      <p class="foot-note">基盤：<b>Obsidian</b>（正本・Context Pack）／ <b>GitHub・clasp</b>（コード同期）／ <b>承認ゲート</b>（本番前の人間レビュー）</p>
     </section>
   </main>
 
