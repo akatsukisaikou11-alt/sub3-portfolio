@@ -232,6 +232,12 @@
     .why .row .k{flex:0 0 auto;width:auto;justify-content:flex-start;text-align:left;font-size:15px}
     .why .row p{font-size:14px}
     .agents{grid-template-columns:1fr 1fr}
+    /* スマホは右パネル中心。左はブランド見出しだけ残す */
+    .hero .eyebrow,.hero .lede,.hero .meta,.hero .person{display:none}
+    .hero{gap:6px;padding:0}
+    .brand{font-size:24px}
+    .brand small{font-size:12px;margin-top:5px}
+    .shell{gap:12px}
   }
 </style>
 </head>
@@ -243,31 +249,29 @@
     <div class="eyebrow">AI Agent 導入支援の小型実証</div>
     <div class="brand">Team Sub-3<small>AI Agent活用の実践 ／ 業務変革への活用を見据えて</small></div>
     <p class="lede">
-      作って終わりにしない。<b>目的 → 手段 → 成果 → 転用</b>まで、AIと人間のチームで一気通貫に回す実践です。
+      個人開発を、<b>企業のAI Agent導入支援に近い「型」</b>で運用するプロジェクト。
+      フルマラソン・サブ3（3時間切り）を目指すトレーニング管理アプリを題材に、
+      <b>課題定義・Agent設計・データ設計・実装・運用改善</b>を一気通貫で実証しています。
     </p>
-    <div class="vflow">
-      <div class="vstage">
-        <div class="vlabel">目的</div>
-        <div class="vtext"><b>サブ3（3時間切り）を達成する</b>。期日を切った本気の目標。</div>
-      </div>
-      <div class="varrow">↓</div>
-      <div class="vstage">
-        <div class="vlabel">手段</div>
-        <div class="vtext">役割ごとに最適な<b>AI＋人間のチーム</b>で、毎日のデータから意思決定を回す。<span class="vsub">Claude・Codex・Gemini ＋ 本人</span></div>
-      </div>
-      <div class="varrow">↓</div>
-      <div class="vstage">
-        <div class="vlabel">成果</div>
-        <div class="vtext"><b>課題定義 → 設計 → 実装 → 運用改善</b>を一気通貫。改善ループで回り続ける「生きた運用」。</div>
-      </div>
-      <div class="varrow">↓</div>
-      <div class="vstage accent">
-        <div class="vlabel">転用</div>
-        <div class="vtext">この型はそのまま<b>企業のAI Agent導入支援・DX・PMO</b>へ。作るより<b>回し続けられること</b>に価値。</div>
-      </div>
-    </div>
-    <p class="lede" style="font-size:12.5px">
-      テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。人間の判断を残した統制可能な運用を設計。
+    <p class="lede">
+      これは面接用のデモではありません。<b>Garmin・食事・睡眠のデータを毎日記録し、AIの提案で実際に走り続けている「生きた運用」</b>。
+      だから、机上では見えない改善点が日々の現場から立ち上がってきます。
+    </p>
+    <p class="lede">
+      複数のデータを統合し、判断基準を決め、続けられるUIと運用ルールに落とす——<b>この構造は企業の業務変革と同じ</b>。
+      それを、<b>役割ごとに最適なAIをアサインし、人間と組んだチーム</b>で回しています。
+    </p>
+    <p class="lede">
+      実際、半年で<b>サブ4（4時間切り）を達成</b>。いまはサブ3へ向けて運用を続けており、
+      データが増えるほど判断は鋭くなり、改善のたびにアプリも走力も伸びていきます。
+    </p>
+    <p class="lede">
+      この「<b>課題を定義し、AIを実装や分析に使い、人間が最終判断して運用に定着させる</b>」型は、
+      そのまま企業のAI Agent導入支援・DX・PMOへ移せます。<b>作れることより、現場で回し続けられること</b>に価値があると考えています。
+    </p>
+    <p class="lede" style="font-size:13px">
+      テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。
+      AIに丸投げせず、人間の判断を残した統制可能な運用を設計しています。
     </p>
     <div class="meta">
       <span class="chip"><b>技術構成</b>&nbsp; GAS / Supabase / Garmin / Gemini / Antigravity / Obsidian / GitHub・clasp</span>
