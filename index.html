@@ -70,6 +70,16 @@
   .brand small{display:block;font-size:15px;font-weight:600;color:var(--accent-2);margin-top:8px;letter-spacing:.04em}
   .lede{color:var(--muted);font-size:14.5px;line-height:1.85}
   .lede b{color:var(--ink);font-weight:700}
+  .vflow{display:flex;flex-direction:column;gap:0;margin-top:2px}
+  .vstage{display:flex;gap:11px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--card-line);border-radius:12px;padding:12px 14px}
+  .vstage .vlabel{flex:0 0 auto;font-size:11px;font-weight:800;letter-spacing:.05em;color:var(--accent-2);background:rgba(56,189,248,.14);border-radius:7px;padding:4px 8px;margin-top:1px}
+  .vstage .vtext{font-size:13.5px;color:var(--muted);line-height:1.6}
+  .vstage .vtext b{color:var(--ink);font-weight:700}
+  .vstage .vsub{display:block;font-size:11.5px;color:var(--accent);font-weight:700;margin-top:4px;letter-spacing:.02em}
+  .vstage.accent{border-color:rgba(45,212,191,.4);background:linear-gradient(120deg,rgba(45,212,191,.10),transparent)}
+  .vstage.accent .vlabel{color:var(--accent);background:rgba(45,212,191,.16)}
+  .vstage.accent .vtext b{color:var(--accent)}
+  .varrow{align-self:center;color:var(--accent);font-size:15px;line-height:1;padding:6px 0}
   .meta{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px}
   .chip{
     font-size:11.5px;color:var(--muted);
@@ -233,29 +243,31 @@
     <div class="eyebrow">AI Agent 導入支援の小型実証</div>
     <div class="brand">Team Sub-3<small>AI Agent活用の実践 ／ 業務変革への活用を見据えて</small></div>
     <p class="lede">
-      個人開発を、<b>企業のAI Agent導入支援に近い「型」</b>で運用するプロジェクト。
-      フルマラソン・サブ3（3時間切り）を目指すトレーニング管理アプリを題材に、
-      <b>課題定義・Agent設計・データ設計・実装・運用改善</b>を一気通貫で実証しています。
+      作って終わりにしない。<b>目的 → 手段 → 成果 → 転用</b>まで、AIと人間のチームで一気通貫に回す実践です。
     </p>
-    <p class="lede">
-      これは面接用のデモではありません。<b>Garmin・食事・睡眠のデータを毎日記録し、AIの提案で実際に走り続けている「生きた運用」</b>。
-      だから、机上では見えない改善点が日々の現場から立ち上がってきます。
-    </p>
-    <p class="lede">
-      複数のデータを統合し、判断基準を決め、続けられるUIと運用ルールに落とす——<b>この構造は企業の業務変革と同じ</b>。
-      それを、<b>役割ごとに最適なAIをアサインし、人間と組んだチーム</b>で回しています。
-    </p>
-    <p class="lede">
-      実際、半年で<b>サブ4（4時間切り）を達成</b>。いまはサブ3へ向けて運用を続けており、
-      データが増えるほど判断は鋭くなり、改善のたびにアプリも走力も伸びていきます。
-    </p>
-    <p class="lede">
-      この「<b>課題を定義し、AIを実装や分析に使い、人間が最終判断して運用に定着させる</b>」型は、
-      そのまま企業のAI Agent導入支援・DX・PMOへ移せます。<b>作れることより、現場で回し続けられること</b>に価値があると考えています。
-    </p>
-    <p class="lede" style="font-size:13px">
-      テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。
-      AIに丸投げせず、人間の判断を残した統制可能な運用を設計しています。
+    <div class="vflow">
+      <div class="vstage">
+        <div class="vlabel">目的</div>
+        <div class="vtext"><b>サブ3（3時間切り）を達成する</b>。期日を切った本気の目標。</div>
+      </div>
+      <div class="varrow">↓</div>
+      <div class="vstage">
+        <div class="vlabel">手段</div>
+        <div class="vtext">役割ごとに最適な<b>AI＋人間のチーム</b>で、毎日のデータから意思決定を回す。<span class="vsub">Claude・Codex・Gemini ＋ 本人</span></div>
+      </div>
+      <div class="varrow">↓</div>
+      <div class="vstage">
+        <div class="vlabel">成果</div>
+        <div class="vtext"><b>課題定義 → 設計 → 実装 → 運用改善</b>を一気通貫。改善ループで回り続ける「生きた運用」。</div>
+      </div>
+      <div class="varrow">↓</div>
+      <div class="vstage accent">
+        <div class="vlabel">転用</div>
+        <div class="vtext">この型はそのまま<b>企業のAI Agent導入支援・DX・PMO</b>へ。作るより<b>回し続けられること</b>に価値。</div>
+      </div>
+    </div>
+    <p class="lede" style="font-size:12.5px">
+      テーマは「<b>AIは提案と実装を民主化するが、実行・定着・改善は自動化しない</b>」。人間の判断を残した統制可能な運用を設計。
     </p>
     <div class="meta">
       <span class="chip"><b>技術構成</b>&nbsp; GAS / Supabase / Garmin / Gemini / Antigravity / Obsidian / GitHub・clasp</span>
