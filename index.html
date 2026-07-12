@@ -316,7 +316,7 @@
           <div class="num">1</div>
           <div class="do-body">
             <div class="do-t">何を作り、何を行っているか</div>
-            <p>その日の状態に応じて計画を変える<b>意思決定アプリ</b>を自作。毎日 <b>Garmin（心拍・睡眠・負荷）＋Omron（体重・体脂肪率などの体組成）＋食事＋主観コンディション</b>を記録し、AIがその日にやるべき<b>練習・食事・回復</b>を提案。週次で計画、月次で分析を回している。</p>
+            <p>その日の状態に応じて計画を変える<b>意思決定アプリ</b>を自作。毎日 <b>Garmin＋Omron＋食事＋主観コンディション</b>を自動同期・記録し、AIが練習・食事・回復を提案。APIコストを抑える**ローカルLLM（Ollama Qwen3:8b）による評価経路**、不通時の**内製ロジックへの自動フォールバック**、および**常駐型ヘルス/バグ自動検知ポーラー**を組み込んだ堅牢な基盤で稼働しています。</p>
           </div>
         </div>
         <div class="do-block">
@@ -372,8 +372,8 @@
         <div class="agent"><div class="r">Engineer</div><div class="who">Codex</div><div class="d">実装案／コード修正</div></div>
         <div class="agent"><div class="r">Analyst</div><div class="who">Gemini</div><div class="d">指標設計／異常値確認</div></div>
         <div class="agent"><div class="r">Developer</div><div class="who">Antigravity</div><div class="d">自律開発／コード修正・リファクタ</div></div>
-        <div class="agent"><div class="r">Reviewer</div><div class="who">Claude</div><div class="d">品質・説明可能性／セキュリティ</div></div>
-        <div class="agent planned"><div class="r">Data / OCR</div><div class="who">ローカルLLM</div><div class="d">画像・記録の読取／データ取込</div><div class="plan">導入予定</div></div>
+        <div class="agent"><div class="r">Reviewer</div><div class="who">Claude</div><div class="d">品質確認／自動レビュー（タスクスケジューラ連携）</div></div>
+        <div class="agent"><div class="r">Data / OCR</div><div class="who">ローカルLLM</div><div class="d">画像・記録の読取／ローカルAI（段1）評価</div></div>
       </div>
       <p class="foot-note"><b>責任分界</b>：各AIは実装補助・分析・論点整理・検証観点に活用。目的設定・要件確定・品質確認・最終判断は人間が担う。</p>
     </section>
@@ -449,22 +449,31 @@
           <circle cx="470" cy="182" r="7"/><circle cx="320" cy="182" r="7"/><circle cx="170" cy="182" r="7"/>
         </g>
         <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
-          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">アイディア</text>
-          <text x="170" y="63" fill="#9fb3c8" font-size="11">発案（本人）</text>
-          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">カンバン起票</text>
-          <text x="320" y="63" fill="#9fb3c8" font-size="11">Claude / Obsidian</text>
-          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">実装</text>
-          <text x="470" y="63" fill="#9fb3c8" font-size="11">Codex</text>
-          <text x="470" y="206" fill="#38bdf8" font-size="15" font-weight="700">レビュー判定</text>
-          <text x="470" y="221" fill="#9fb3c8" font-size="11">Claude</text>
-          <text x="320" y="206" fill="#38bdf8" font-size="15" font-weight="700">レビュー</text>
-          <text x="320" y="221" fill="#9fb3c8" font-size="11">Claude・人間</text>
-          <text x="170" y="206" fill="#38bdf8" font-size="15" font-weight="700">デプロイ</text>
-          <text x="170" y="221" fill="#9fb3c8" font-size="11">承認後に反映</text>
+          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">自動着手/注入</text>
+          <text x="170" y="63" fill="#9fb3c8" font-size="11">コンテキスト自動同期</text>
+          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">実装</text>
+          <text x="320" y="63" fill="#9fb3c8" font-size="11">Codex / ゲート検証</text>
+          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">自動検知</text>
+          <text x="470" y="63" fill="#9fb3c8" font-size="11">タスクスケジューラ監視</text>
+          <text x="470" y="206" fill="#38bdf8" font-size="15" font-weight="700">自動レビュー</text>
+          <text x="470" y="221" fill="#9fb3c8" font-size="11">Claudeヘッドレス起動</text>
+          <text x="320" y="206" fill="#38bdf8" font-size="15" font-weight="700">承認・受入</text>
+          <text x="320" y="221" fill="#9fb3c8" font-size="11">人間(PO)による受入</text>
+          <text x="170" y="206" fill="#38bdf8" font-size="15" font-weight="700">プリデプロイ</text>
+          <text x="170" y="221" fill="#9fb3c8" font-size="11">機械ゲート検証➔本番</text>
           <text x="320" y="121" fill="#2dd4bf" font-size="15" font-weight="800">⟲ 改善ループ</text>
           <text x="320" y="140" fill="#9fb3c8" font-size="11">デプロイ → 次のアイディアへ回し続ける</text>
         </g>
       </svg>
+
+      <div class="harness-explain" style="margin-top:20px; font-size:12.5px; line-height:1.75; color:var(--muted)">
+        <div style="font-weight:700; color:var(--accent); margin-bottom:8px">🛡️ 開発プロセスを守る3つの機械ガードレール（Harness）</div>
+        <ul style="padding-left:18px; margin:0; display:flex; flex-direction:column; gap:8px">
+          <li><b>① 自動コンテキスト注入（Session Start）</b>: 起動時に前回の失敗教訓（失敗ログYAMLから自動抽出）と共通ルールをマージしたダイジェストをAIのコンテキストへ自動で読み込ませ、人間が必読する「善意依存」を排除。</li>
+          <li><b>② プリデプロイ・ゲート（Pre-deploy Gate）</b>: 本番反映（clasp push/deploy）の直前に <code>git status</code> や <code>git diff --check</code> をフックして機械検証し、未コミット変更やコンフリクトマーカーの混入を強制ブロック。</li>
+          <li><b>③ 常駐監視バックアップと自動レビュー</b>: ボードの書き込み監視（2秒間隔世代バックアップ）で消失事故を予防し、実装完了（確認・待ち）状態への遷移をタスクスケジューラで検知してClaudeがヘッドレスで自動静的レビューを実行。</li>
+        </ul>
+      </div>
     </section>
   </main>
 
