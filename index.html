@@ -316,7 +316,7 @@
           <div class="num">1</div>
           <div class="do-body">
             <div class="do-t">何を作り、何を行っているか</div>
-            <p>その日の状態に応じて計画を変える<b>意思決定アプリ</b>を自作。毎日 <b>Garmin＋Omron＋食事＋主観コンディション</b>を自動同期・記録し、AIが練習・食事・回復を提案。APIコストを抑える<b>ローカルLLM（Ollama Qwen3:8b）による評価経路</b>、不通時の<b>内製ロジックへの自動フォールバック</b>、および<b>常駐型ヘルス/バグ自動検知ポーラー</b>を組み込んだ堅牢な基盤で稼働しています。</p>
+            <p>その日の状態に応じて計画を変える<b>意思決定アプリ</b>を自作。毎日 <b>Garmin＋Omron＋食事＋主観コンディション</b>を自動同期・記録し、AIが練習・食事・回復を提案。プライバシーと運用コストを両立する<b>PCローカルでのAIデータ解析</b>、外部連携エラー時にも運用を止めない<b>代替ロジックへの自動切り替え</b>、および異常発生を即座に通知する<b>システムの自動健康診断機能</b>を組み込み、毎日ストレスなく使える堅牢な基盤を構築しています。</p>
           </div>
         </div>
         <div class="do-block">
@@ -372,8 +372,8 @@
         <div class="agent"><div class="r">Engineer</div><div class="who">Codex</div><div class="d">実装案／コード修正</div></div>
         <div class="agent"><div class="r">Analyst</div><div class="who">Gemini</div><div class="d">指標設計／異常値確認</div></div>
         <div class="agent"><div class="r">Developer</div><div class="who">Antigravity</div><div class="d">自律開発／コード修正・リファクタ</div></div>
-        <div class="agent"><div class="r">Reviewer</div><div class="who">Claude</div><div class="d">品質確認／自動レビュー（タスクスケジューラ連携）</div></div>
-        <div class="agent"><div class="r">Data / OCR</div><div class="who">ローカルLLM</div><div class="d">画像・記録の読取／ローカルAI（段1）評価</div></div>
+        <div class="agent"><div class="r">Reviewer</div><div class="who">Claude</div><div class="d">コードの品質管理／AIによる自動ダブルチェック</div></div>
+        <div class="agent"><div class="r">Data / OCR</div><div class="who">ローカルAI</div><div class="d">画像・記録の読み取り／データ入力の自動化</div></div>
       </div>
       <p class="foot-note"><b>責任分界</b>：各AIは実装補助・分析・論点整理・検証観点に活用。目的設定・要件確定・品質確認・最終判断は人間が担う。</p>
     </section>
@@ -449,29 +449,29 @@
           <circle cx="470" cy="182" r="7"/><circle cx="320" cy="182" r="7"/><circle cx="170" cy="182" r="7"/>
         </g>
         <g font-family="'Segoe UI','Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,sans-serif" text-anchor="middle">
-          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">自動着手/注入</text>
-          <text x="170" y="63" fill="#9fb3c8" font-size="11">コンテキスト自動同期</text>
-          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">実装</text>
-          <text x="320" y="63" fill="#9fb3c8" font-size="11">Codex / ゲート検証</text>
-          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">自動検知</text>
-          <text x="470" y="63" fill="#9fb3c8" font-size="11">タスクスケジューラ監視</text>
+          <text x="170" y="48" fill="#38bdf8" font-size="15" font-weight="700">自動準備</text>
+          <text x="170" y="63" fill="#9fb3c8" font-size="11">AIへのルール自動連携</text>
+          <text x="320" y="48" fill="#38bdf8" font-size="15" font-weight="700">プログラム作成</text>
+          <text x="320" y="63" fill="#9fb3c8" font-size="11">AIによる自動開発</text>
+          <text x="470" y="48" fill="#38bdf8" font-size="15" font-weight="700">状況検知</text>
+          <text x="470" y="63" fill="#9fb3c8" font-size="11">稼働状況の常時テスト</text>
           <text x="470" y="206" fill="#38bdf8" font-size="15" font-weight="700">自動レビュー</text>
-          <text x="470" y="221" fill="#9fb3c8" font-size="11">Claudeヘッドレス起動</text>
-          <text x="320" y="206" fill="#38bdf8" font-size="15" font-weight="700">承認・受入</text>
-          <text x="320" y="221" fill="#9fb3c8" font-size="11">人間(PO)による受入</text>
-          <text x="170" y="206" fill="#38bdf8" font-size="15" font-weight="700">プリデプロイ</text>
-          <text x="170" y="221" fill="#9fb3c8" font-size="11">機械ゲート検証➔本番</text>
+          <text x="470" y="221" fill="#9fb3c8" font-size="11">別AIによるダブルチェック</text>
+          <text x="320" y="206" fill="#38bdf8" font-size="15" font-weight="700">最終承認</text>
+          <text x="320" y="221" fill="#9fb3c8" font-size="11">人間による受け入れ確認</text>
+          <text x="170" y="206" fill="#38bdf8" font-size="15" font-weight="700">本番公開</text>
+          <text x="170" y="221" fill="#9fb3c8" font-size="11">自動チェックを経て公開</text>
           <text x="320" y="121" fill="#2dd4bf" font-size="15" font-weight="800">⟲ 改善ループ</text>
           <text x="320" y="140" fill="#9fb3c8" font-size="11">デプロイ → 次のアイディアへ回し続ける</text>
         </g>
       </svg>
 
       <div class="harness-explain" style="margin-top:20px; font-size:12.5px; line-height:1.75; color:var(--muted)">
-        <div style="font-weight:700; color:var(--accent); margin-bottom:8px">🛡️ 開発プロセスを守る3つの機械ガードレール（Harness）</div>
+        <div style="font-weight:700; color:var(--accent); margin-bottom:8px">🛡️ 開発プロセスを守る3つの自動化ガードレール</div>
         <ul style="padding-left:18px; margin:0; display:flex; flex-direction:column; gap:8px">
-          <li><b>① 自動コンテキスト注入（Session Start）</b>: 起動時に前回の失敗教訓（失敗ログYAMLから自動抽出）と共通ルールをマージしたダイジェストをAIのコンテキストへ自動で読み込ませ、人間が必読する「善意依存」を排除。</li>
-          <li><b>② プリデプロイ・ゲート（Pre-deploy Gate）</b>: 本番反映（clasp push/deploy）の直前に <code>git status</code> や <code>git diff --check</code> をフックして機械検証し、未コミット変更やコンフリクトマーカーの混入を強制ブロック。</li>
-          <li><b>③ 常駐監視バックアップと自動レビュー</b>: ボードの書き込み監視（2秒間隔世代バックアップ）で消失事故を予防し、実装完了（確認・待ち）状態への遷移をタスクスケジューラで検知してClaudeがヘッドレスで自動静的レビューを実行。</li>
+          <li><b>① 過去の教訓を自動インポート</b>: AIの起動時に、過去の失敗事例や開発ルールを自動的に読み込ませる仕組みです。人間が都度ルールを説明したり指示したりしなくても、AIが自律的にルールを学習した状態で作業を開始できます。</li>
+          <li><b>② リリース前の安全確認ゲート</b>: 作成したプログラムを本番環境へ公開する直前に、書きかけの不要なコードや編集中のファイルが残っていないかを自動で全走査し、安全性が100%確認できるまで公開を強制的にブロックします。</li>
+          <li><b>③ データの保護とAIによる二重チェック</b>: 開発データが予期せず失われるのを防ぐ自動バックアップを常時動かしつつ、タスクの状況変化を検知して「別のAI」が自動で品質チェック（ダブルチェック）を行い、品質のばらつきを抑えます。</li>
         </ul>
       </div>
     </section>
