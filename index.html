@@ -4,6 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Team Sub-3 ｜ AI Agent活用の実践ポートフォリオ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://akatsukisaikou11-alt.github.io/sub3-portfolio/">
 <meta property="og:title" content="Team Sub-3｜AI Agent活用の実践ポートフォリオ">
@@ -29,7 +32,7 @@
     --muted:#9fb3c8;
     --card:rgba(255,255,255,.05);
     --card-line:rgba(255,255,255,.10);
-    --font: "Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
+    --font: 'Outfit', 'Inter', "Segoe UI","Hiragino Kaku Gothic ProN","Yu Gothic UI",Meiryo,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{height:100%}
@@ -64,8 +67,9 @@
     font-size:12px;letter-spacing:.22em;color:var(--accent);
     text-transform:uppercase;font-weight:700;
   }
-  .brand{
+  h1.brand{
     font-size:40px;font-weight:800;line-height:1.1;letter-spacing:.01em;
+    margin:0;
   }
   .brand small{display:block;font-size:15px;font-weight:600;color:var(--accent-2);margin-top:8px;letter-spacing:.04em}
   .lede{color:var(--muted);font-size:14.5px;line-height:1.85}
@@ -247,7 +251,7 @@
   <!-- LEFT -->
   <header class="hero">
     <div class="eyebrow">AI Agent 導入支援の小型実証</div>
-    <div class="brand">Team Sub-3<small>AI Agent活用の実践 ／ 業務変革への活用を見据えて</small></div>
+    <h1 class="brand" id="main-title">Team Sub-3<small>AI Agent活用の実践 ／ 業務変革への活用を見据えて</small></h1>
     <p class="lede">
       個人開発を、<b>企業のAI Agent導入支援に近い「型」</b>で運用するプロジェクト。
       フルマラソン・サブ3（3時間切り）を目指すトレーニング管理アプリを題材に、
@@ -284,11 +288,11 @@
   <!-- RIGHT -->
   <main class="panel">
     <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true"  data-v="why">なぜやるか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="do">何を作るか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="result">何を提供するか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="how">誰と組むか</button>
-      <button class="tab" role="tab" aria-selected="false" data-v="tech">どう運用するか</button>
+      <button class="tab" role="tab" aria-selected="true"  data-v="why" id="tab-why">なぜやるか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="do" id="tab-do">何を作るか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="result" id="tab-result">何を提供するか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="how" id="tab-how">誰と組むか</button>
+      <button class="tab" role="tab" aria-selected="false" data-v="tech" id="tab-tech">どう運用するか</button>
     </div>
 
     <!-- WHY -->
